@@ -1,0 +1,10 @@
+<div class="searchContainer">
+  <mat-form-field>
+    <input matInput placeholder="Искать по тегам" type="text" [(ngModel)]="searchTags" (change)="search(searchTags)">
+  </mat-form-field>
+<div>
+
+
+<ng-container *ngFor="let galleryItem of galleryItemList; let i = index;">
+    <app-gallery-card [index]="i" [galleryItem]="galleryItem"></app-gallery-card>
+</ng-container>

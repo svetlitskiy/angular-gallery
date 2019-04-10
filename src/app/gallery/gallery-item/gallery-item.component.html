@@ -1,0 +1,15 @@
+<h1>{{ galleryItems[index].title }}</h1>
+<img mat-card-image class="image" [src]="galleryItems[index].link" (click)="next(1)">
+
+
+<div>
+  <button mat-fab class="close" (click)="close()">
+    <mat-icon aria-label="previous">close</mat-icon>
+  </button>
+  <button mat-fab class="left" *ngIf="index>0" (click)="next(-1)">
+    <mat-icon aria-label="previous">navigate_before</mat-icon>
+  </button>
+  <button mat-fab class="right" *ngIf="galleryItems.length > index+1" (click)="next(1)">
+    <mat-icon aria-label="next">navigate_next</mat-icon>
+  </button>
+</div>

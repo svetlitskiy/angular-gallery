@@ -1,0 +1,22 @@
+
+.left {
+  position: absolute;
+  left: 10px;
+  top: 45%;
+}
+
+.right {
+  position: absolute;
+  right: 10px;
+  top: 45%;
+}
+
+.close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+img {
+  width: 100%;
+}

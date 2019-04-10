@@ -1,0 +1,15 @@
+.image {
+  width: 150px;
+  height: 150px;
+}
+
+.title {
+  font-size: small;
+  height: 25px;
+}
+
+.card {
+  float: left;
+  width: 150px;
+  height: 175px;
+}
