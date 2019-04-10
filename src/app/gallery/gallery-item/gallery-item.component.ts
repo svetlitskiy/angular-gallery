@@ -30,9 +30,7 @@ export class GalleryItemComponent implements OnInit, OnDestroy {
   }
 
   next(direction: number) {
-    console.log('current ', this.index);
     const index = direction > 0 ? this.index + 1 : this.index - 1;
-    console.log('navigate to ', index);
     this.router.navigate(['gallery', 'item', index]);
 
   }

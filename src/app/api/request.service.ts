@@ -18,7 +18,7 @@ export class RequestService {
     params = params.set('tags', tags.join(','));
     params = params.set('nojsoncallback', '?');
     return this.httpClient.get('https://api.flickr.com/services/feeds/photos_public.gne', {params}).pipe(
-      map((result) => {
+      map((result: {items: any[]}) => {
         const ret: GalleryItem[] = [];
         result.items.forEach((item) => {
           const link = item.media.m.replace('_m.jpg', '.jpg');

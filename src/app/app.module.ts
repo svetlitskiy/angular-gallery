@@ -24,6 +24,7 @@ import { CacheRouteReuseStrategy } from './cache-route-reuse.strategy';
 const appRoutes: Routes = [
   { path: 'gallery',  component: GalleryListComponent },
   { path: 'gallery/item/:index',  component: GalleryItemComponent },
+  { path: '*',  component: GalleryItemComponent },
 ];
 
 @NgModule({
