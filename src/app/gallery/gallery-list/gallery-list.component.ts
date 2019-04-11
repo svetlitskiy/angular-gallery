@@ -1,7 +1,7 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RequestService } from '../../api/request.service';
 import { GalleryItem } from '../galleryItem.model';
-import {GalleryDataService} from '../gallery-data.service';
+import { GalleryDataService } from '../gallery-data.service';
 
 @Component({
   selector: 'app-gallery-list',
@@ -18,7 +18,6 @@ export class GalleryListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log('changes');
     this.search(this.searchTags);
   }
 
@@ -31,17 +30,6 @@ export class GalleryListComponent implements OnInit, OnDestroy {
       this.galleryItemList = answer;
       this.galleryDataService.updateItems(answer);
     });
-  }
-
-
-  galleryItemClick(galleryItem) {
-    console.log(galleryItem);
-  }
-
-  navigate(direction: number) {
-    if (direction === 1 || direction === -1) {
-      this.currentIndex += direction;
-    }
   }
 
 }

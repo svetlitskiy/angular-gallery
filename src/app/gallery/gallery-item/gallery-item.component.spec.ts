@@ -1,16 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatIconModule } from '@angular/material';
 import { GalleryItemComponent } from './gallery-item.component';
-import { Observable, of } from 'rxjs';
+import { of } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GalleryDataService } from '../gallery-data.service';
 
 
 
-fdescribe('GalleryItemComponent', () => {
+describe('GalleryItemComponent', () => {
   let component: GalleryItemComponent;
   let fixture: ComponentFixture<GalleryItemComponent>;
 
+  const router = {
+    navigate: jasmine.createSpy('navigate')
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -19,7 +22,7 @@ fdescribe('GalleryItemComponent', () => {
       providers: [{
         provide: ActivatedRoute,
         useValue: {
-          params: of({index: 0}),
+          params: of({index: 1}),
           snapshot: {
             params: {
               index: '1'
@@ -29,15 +32,24 @@ fdescribe('GalleryItemComponent', () => {
       }, {
         provide: GalleryDataService,
         useValue: {
-          currentItems: of([{title: 'test title', src: 'http://192.168.1.1/img1.jpg'}])
+          currentItems: of([{
+            title: 'test title',
+            link: 'http://192.168.1.1/img1.jpg',
+            img: 'http://192.168.1.1/img1_m.jpg',
+            description: '',
+            tags: ['a', 'b']
+          }, {
+            title: 'test title 2',
+            link: 'http://192.168.1.1/img2.jpg',
+            img: 'http://192.168.1.1/img2_m.jpg',
+            description: '',
+            tags: ['b', 'c']
+          }])
         }
       },
         {
           provide: Router,
-          useValue: {
-            navigate: () => {
-            }
-          }
+          useValue: router
         }]
     })
       .compileComponents();
@@ -54,7 +66,25 @@ fdescribe('GalleryItemComponent', () => {
   });
 
   it('variables', () => {
-    expect(component.galleryItems).toEqual([{title: 'test title', src: 'http://192.168.1.1/img1.jpg'}]);
+    expect(component.galleryItems.length).toBe(2);
     expect(component.watchers.length).toBe(2);
+    expect(component.index).toBe(1);
+  });
+
+  describe('function next()',  () => {
+    it('function next(1)', () => {
+      component.next(1);
+      expect(router.navigate).toHaveBeenCalledWith(['gallery', 'item', 2]);
+    });
+    it('function next(-1)', () => {
+      component.next(-1);
+      expect(router.navigate).toHaveBeenCalledWith(['gallery', 'item', 0]);
+    });
+  });
+
+
+  it('function close()', () => {
+    component.close();
+    expect(router.navigate).toHaveBeenCalledWith(['gallery']);
   });
 });

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {GalleryItem} from '../galleryItem.model';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-gallery-card',
@@ -14,11 +14,9 @@ export class GalleryCardComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    console.log(this.galleryItem);
   }
 
-  galleryItemClick(galleryItem: GalleryItem) {
-    console.log(galleryItem);
+  galleryItemClick() {
     this.router.navigate(['gallery', 'item', this.index]);
   }
 
